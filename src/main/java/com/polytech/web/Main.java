@@ -1,4 +1,4 @@
-package com.polytech.view;
+package com.polytech.web;
 
 import com.polytech.business.Post;
 import com.polytech.business.PublicationService;
@@ -14,10 +14,15 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        System.setProperty("spring.profiles.active", "PROD") ;
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class) ;
 
         PublicationService publicationService = applicationContext.getBean(PublicationService.class);
+
         Post post = new Post("Bonjour") ;
+        publicationService.post(post) ;
+
+        Post post1 = new Post("hello") ;
         publicationService.post(post) ;
 
         List<Post> posts = publicationService.fetchAll();
