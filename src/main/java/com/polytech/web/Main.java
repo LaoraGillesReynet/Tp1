@@ -19,11 +19,11 @@ public class Main {
 
         PublicationService publicationService = applicationContext.getBean(PublicationService.class);
 
-        Post post = new Post("Bonjour") ;
+        Post post = new Post("hola") ;
         publicationService.post(post) ;
 
-        Post post1 = new Post("hello") ;
-        publicationService.post(post) ;
+        Post post2 = new Post("salut") ;
+        publicationService.post(post2) ;
 
         List<Post> posts = publicationService.fetchAll();
         System.out.println(posts);

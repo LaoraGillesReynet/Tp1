@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:/application.properties")
-@ComponentScan(basePackages = "com.polytech")
+@ComponentScan(basePackages = {"com.polytech.business", "com.polytech.repository"})
 
 public class ApplicationConfig {
 
