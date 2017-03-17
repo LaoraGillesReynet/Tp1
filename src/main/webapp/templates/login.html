@@ -13,6 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
+
     <!-- Custom styles for this template -->
     <style>
         body {
@@ -80,7 +81,6 @@
         section#contact .text-danger {
             color: #e74c3c;
         }
-
     </style>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -112,22 +112,19 @@
         </div><!--/.nav-collapse -->
     </div>
 </div>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Logout"/>
 
-</form>
 <div class="container">
     <section id="contact" style="">
         <div class="container">
-            <div class="row feed" th:each="post :${posts}">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <p th:text="${post.getContent()}"></p>
-                        </div>
-                    </div>
+            <form th:action="@{/login}" method="POST" role="form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username"  placeholder="Username"/>
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" name="password"  placeholder="Password"/>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </section>
 </div><!-- /.container -->

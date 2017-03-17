@@ -1,18 +1,27 @@
 package com.polytech.business;
 
+import javax.persistence.*;
+
 /**
  * Created by Laora on 13/03/2017.
  */
+@Entity
+@Table(name = "POST")
 public class Post {
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id ;
+
+    @Column(name = "CONTENT")
     private String content;
 
+    public Post() {
+    }
 
     public Post(String content){
         this.content = content;
-    }
-
-    public Post() {
     }
 
     @Override
