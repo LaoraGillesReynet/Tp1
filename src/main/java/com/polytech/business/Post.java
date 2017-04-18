@@ -1,13 +1,14 @@
 package com.polytech.business;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Laora on 13/03/2017.
  */
 @Entity
-@Table(name = "POST")
-public class Post {
+@Table(name = "post")
+public class Post implements Serializable{
 
     @Id
     @Column(name = "ID")

@@ -19,20 +19,16 @@ public class HelloController {
     @Autowired
     private PublicationService publicationService;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String home(){
-        return "hello" ;
-    }
 
     @RequestMapping(value = "/feed", method = RequestMethod.GET)
-    public String share(Model model){
+    public String fetchAllFeeds(Model model){
         List<Post> posts = publicationService.fetchAll() ;
         model.addAttribute("posts", posts) ;
         return "feed" ;
     }
 
     @RequestMapping(value = "/share", method = RequestMethod.POST)
-    public String post(Post post){
+    public String publishPost(Post post){
         publicationService.post(post) ;
         return "redirect:/feed" ;
     }

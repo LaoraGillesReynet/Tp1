@@ -4,12 +4,13 @@ package com.polytech.config;
  * Created by Laora on 13/03/2017.
  */
 
-
 import org.apache.commons.dbcp.BasicDataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
@@ -17,9 +18,10 @@ import javax.sql.DataSource;
 
 
 @Configuration
+@EnableJpaRepositories("com.polytech.repository")
 @PropertySource("classpath:/application.properties")
 @ComponentScan(basePackages = {"com.polytech.business", "com.polytech.repository"})
-
+@EntityScan("com.polytech.business")
 public class ApplicationConfig {
 
     /*@Value("${datasource.driverName}")
@@ -50,24 +52,10 @@ public class ApplicationConfig {
 
     @Bean(name = "dataSource")
     @Profile("DEV")
-    public javax.sql.DataSource devDataSource(){
-        EmbeddedDatabaseBuilder embeddedDatabaseBuilder = new EmbeddedDatabaseBuilder() ;
-        return embeddedDatabaseBuilder
-                   .setType(EmbeddedDatabaseType.H2)
-                    .addScript("create-schema.sql")
-                    .build() ;
+    public DataSource devDataSource() {
+         return new EmbeddedDatabaseBuilder()
+            .setType(EmbeddedDatabaseType.H2)
+            .addScript("create-schema.sql")
+            .build();
     }
-
-/*
-    @Bean
-    public PostRepository postRepository(){
-        return new JdbcPostRepository(dataSource()) ;
-    }
-
-    @Bean
-    public PublicationService publicationService(PostRepository postRepository){
-        return new PublicationServiceImpl(postRepository) ;
-    }
-*/
-
 }

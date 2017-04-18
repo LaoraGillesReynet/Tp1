@@ -5,7 +5,6 @@ import com.polytech.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -22,13 +21,8 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     public void post(Post post) {
-        try {
-            postRepository.save(post) ;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        postRepository.save(post);
     }
-
     public List<Post> fetchAll(){
         return postRepository.findAll() ;
     }

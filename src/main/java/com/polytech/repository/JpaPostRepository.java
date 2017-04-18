@@ -4,6 +4,7 @@ import com.polytech.business.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,12 +19,13 @@ import java.util.List;
  */
 
 @Repository
+@Transactional
 public class JpaPostRepository implements PostRepository {
 
     @PersistenceContext
     private EntityManager entityManager ;
 
-    public JpaPostRepository(DataSource dataSource) {
+    public JpaPostRepository() {
 
     }
 
@@ -32,8 +34,7 @@ public class JpaPostRepository implements PostRepository {
     }
 
     public List<Post> findAll() {
-        String qlString = "SELECT p Post p" ;
-        Query query = entityManager.createQuery(qlString) ;
+        Query query = entityManager.createQuery("select p from Post p") ;
         return query.getResultList() ;
     }
 
